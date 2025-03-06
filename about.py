@@ -10,9 +10,9 @@
 #
 ##############################################################################
 
-from PySide6.QtWidgets import QDialog, QTableWidgetItem
+from PySide6.QtWidgets import QDialog
 from ui.about_ui import Ui_dlgAbout
-import stylesheet
+from settings import SettingsManager
 
 class AboutDialog(QDialog):  
     """A very basic About dialog box"""
@@ -22,13 +22,11 @@ class AboutDialog(QDialog):
         self.ui = Ui_dlgAbout() 
         self.ui.setupUi(self)
 
-        self.ui.lblApplicationTitle.setText("Spurpoint")
-        about_text = """Version 4.2
-A runner tracker program.
+        self.ui.lblApplicationTitle.setText("Spurpoint Messaging")
+        about_text = """Version 1.1
+An APRS Messaging Application
         
-Manually make entries into a database when runners pass checkpoints.
-Keep track of runners by course and checkpoint.
-Search for runners to find their last location.
+Retrieve APRS messages from APRS.fi via an API
         
 Copyright (c) Todd Smith N7TMS 2025
         """
@@ -37,7 +35,7 @@ Copyright (c) Todd Smith N7TMS 2025
         self.ui.butAboutClose.clicked.connect(self.butAboutClose_click)
 
         # set this window's style
-        self.setStyleSheet(stylesheet.mgtwindow)
+        self.setStyleSheet(SettingsManager.WIDGETSTYLES)
 
     
     def butAboutClose_click(self):

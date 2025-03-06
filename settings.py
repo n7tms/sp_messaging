@@ -17,7 +17,7 @@ from PySide6.QtWidgets import QMessageBox
 class SettingsManager:
     """A class to manage the settings file"""
 
-    def __init__(self, file_path: str='spurpoint.set'):
+    def __init__(self, file_path: str='sp_messaging.set'):
         """Instantiate the Settings Manager
         
         If a file path is not specified, we'll create one with some default settings.
@@ -31,70 +31,17 @@ class SettingsManager:
 
         self.file_path = file_path 
         self.settings = {
-            "recent_files": [],
             "preferences": {
                 "color_scheme": "light",  # Or "dark" depending on the current theme
                 "units": "imperial",  # Can be "imperial" or "metric"
                 "APRSAPIKey": "",
                 "DatabasePath": "",
-                "BackupPath": "",
-                "NumRecentFiles": 5,
-                "BackupOnExit": False,
-                "UnitsImperial": True,
-                "UnitsMetric": False,
                 "LocalTime": True,
                 "UTCTime": False,
-                "LatLongAbsolute": True,
-                "LatLongRelative": False,
                 "DateTimeFormat": "yyyy-MM-dd hh:mm:ss",
-                "ServerIP": "127.0.0.1",
-                "ServerPort": 38873,
-                "ImageServerIP": "127.0.0.1",
-                "ImageServerPort": 38874,
-                
-                # Color preferences for different widgets
-                "color_preferences": {
-                    "QLabel": {
-                        "background-color": "#ffffff",
-                        "color": "#ffffff",
-                        "border": "1px solid #ffffff"
-                    },
-                    "QLineEdit": {
-                        "background-color": "#ffffff",
-                        "color": "#ffffff",
-                        "border": "1px solid #ffffff"
-                    },
-                    "QLineEdit:focus": {
-                        "background-color": "#ffffff",
-                        "color": "#ffffff",
-                        "border": "1px solid #ffffff"
-                    },
-                    "QPushButton": {
-                        "background-color": "#ffffff",
-                        "color": "#ffffff",
-                        "border": "1px solid #ffffff"
-                    },
-                    "QPushButton:hover": {
-                        "background-color": "#ffffff",
-                        "color": "#ffffff",
-                        "border": "1px solid #ffffff"
-                    },
-                    "QPushButton:pressed": {
-                        "background-color": "#ffffff",
-                        "color": "#ffffff",
-                        "border": "1px solid #ffffff"
-                    },
-                    "QDialog": {
-                        "background-color": "#ffffff",
-                        "border": "1px solid #ffffff"
-                    },
-                    "QStatusBar": {
-                        "background-color": "#ffffff",
-                        "color": "#ffffff"
-                    }
                 }
             }
-        }
+        
 
         self.load_settings()
 
@@ -132,52 +79,6 @@ class SettingsManager:
         return self.settings.get("recent_files", [])
 
 
-    def add_recent_file(self, event_name: str, file_path: str):
-        """This methods adds a file path to the recent files list
-        
-        Parameters:
-        file_path (str): the path to be added to the list
-        """
-
-        # get the list of current recent files
-        recent_files = self.settings.setdefault("recent_files", [])
-
-        # if this file is already in the list, move it to the top
-        found = None
-        for en,fp in recent_files:
-            if file_path == fp:
-                found = [en,fp]
-                break
-        if found:
-            recent_files.remove(found)
-        recent_files.insert(0, [event_name,file_path])
-
-        self.settings["recent_files"] = recent_files[:self.get_preference("NumRecentFiles")]
-        self.save_settings()
-
-    
-    def remove_recent_file(self, file_path: str):
-        """This method removes a file path from the recent file list.
-        
-        It would be used in the case of database file being manually deleted.
-        
-        Parameters:
-        file_path (str): the path of the file to be removed from the list
-        """
-        
-        # get the list of current recent files
-        recent_files = self.settings.setdefault("recent_files", [])
-
-        # if this filename is in the list, remove it
-        found = None
-        for en,fp in recent_files:
-            if file_path == fp:
-                found = [en,fp]
-                break
-        if found:
-            recent_files.remove(found)
-
-
 
     def update_preference(self, key: str, value: any):
         """Update a preference value
@@ -200,3 +101,97 @@ class SettingsManager:
         """
 
         return self.settings.get("preferences", {}).get(key)
+    
+
+    WIDGETSTYLES = """
+            QDialogWindow {
+                background-color: #FBF9F7;
+                border: 2px solid black;
+                border-radius: 8px;
+            }
+            QMenu {
+                border: 1px solid black; /* Adds a border to the menus */
+                background-color: #FBF9F7; /* Ensures the menu items are visible */
+            }
+            QMenu::item {
+                padding: 5px; /* Adds padding for better appearance */
+            }
+            QMenu::item:selected {
+                background-color: lightgray; /* Highlight for selected menu items */
+            }
+
+            QPushButton {
+                background-color: #2C3E50;  /* deep blue */
+                color: #FBF9F7;             /* snowy white */
+                border: 1px solid #373435;  /* dark gray */
+                border-radius: 5px;       
+                padding: 8px 16px;        
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            QPushButton:hover {
+                background-color: #415162;
+                color: #FBF9F7;
+            }
+
+            QPushButton:pressed {
+                background-color: #F7921E;  /* carrot orange */
+                color: #2C3E50;             /* deep blue */
+                border: 1px solid #003f73; /* Darker border */
+                padding-top: 11px;         /* Slight push effect */
+                padding-bottom: 5px;       /* Adjust padding for press effect */
+            }
+            QPushButton:disabled {
+                background: #cccccc;       /* Light grey background */
+                color: #777777;            /* Muted text */
+                border: 1px solid #aaaaaa; /* Grey border */
+            }
+
+            QLineEdit {
+                background-color: #FBF9F7;   /* White background */
+                border: 1px solid #2C3E50;  /* Light grey border */
+                border-radius: 5px;         /* Rounded corners */
+                padding: 4px 8px;           /* Padding for text */
+                font-size: 14px;            /* Font size */
+            }
+
+            QLineEdit:focus {
+                border: 2px solid #F7921E;  /* orange border on focus */
+                background-color: #FBF9F7;  /* snowy white background on focus */
+            }
+
+            QLineEdit:disabled {
+                background-color: #f5f5f5;  /* Light grey for disabled */
+                color: #a0a0a0;             /* Muted text color */
+            }        
+
+            QTextEdit {
+                background-color: #FBF9F7;   /* White background */
+                border: 1px solid #2C3E50;  /* Light grey border */
+                border-radius: 5px;         /* Rounded corners */
+                padding: 4px 8px;           /* Padding for text */
+                font-size: 14px;            /* Font size */
+            }
+
+            QTextEdit:focus {
+                border: 2px solid #F7921E;  /* orange border on focus */
+                background-color: #FBF9F7;  /* snowy white background on focus */
+            }
+
+            QTextEdit:disabled {
+                background-color: #f5f5f5;  /* Light grey for disabled */
+                color: #a0a0a0;             /* Muted text color */
+            }        
+            
+            QTableWidget::item:selected {
+                background: yellow;
+                color: black;              /* black text */
+            }
+            QStatusBar {
+                background: #e0e0e0; /* Light gray background */
+                border: 1px solid gray; /* Border for visibility */
+                padding: 5px; /* Adds spacing inside */
+                font-size: 12px;
+            }
+            """

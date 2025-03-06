@@ -23,18 +23,18 @@ Messages
 
 
 ## TODO List
-- [ ] change the APRS dialog to a Main Window
-- [ ] change the database schema to handle settings and the APRS messages
-- [ ] hard code the css
 - [ ] create a dialog box for the user to enter the APRS API key
 - [ ] store the key in the database
 - [ ] add functionality to purge the database of existing messages
 - [ ] add functionality to delete selected messages from the database
-- [ ] modify the migrated Spurpoint About to be a Spurpoint Messaging About
 - [ ] modify the Spurpoint logo to create a similar logo for Messaging
 - [ ] modify the Spurpoint website to create a space for the Messaging application
 - [ ] 
 
 
 ## TODone List
+- [x] modify the migrated Spurpoint About to be a Spurpoint Messaging About
+- [x] change the database schema to handle settings and the APRS messages
+- [x] hard code the css
+- [x] change the APRS dialog to a Main Window
 

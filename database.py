@@ -1,5 +1,5 @@
 ##############################################################################
-# SpurPoint
+# Spurpoint Messaging
 #
 # database.py
 # 
@@ -7,7 +7,7 @@
 # including creating a new database.
 # 
 # Creator: Todd Smith
-# Start Date: 2025-01-02
+# Start Date: 2025-03-06
 #
 ##############################################################################
 
@@ -23,7 +23,7 @@ class Database:
 
     _instance = None
 
-    def __new__(cls, db_name: str=os.path.join("db","app.db"), opening: bool=False):
+    def __new__(cls, db_name: str=os.path.join("SPMessaging.db"), opening: bool=False):
         """Instantiate a new instance of the database.
         
         If an instance does not already exist, create a new one.
@@ -149,9 +149,6 @@ class Database:
         outside the class.
         """
 
-        # TODO: Consider moving this method out of the database class
-        # TODO: in order to make the class more generic.
-        
         # if the database file already exists, delete it.
         if os.path.exists(self.dbName): 
             # if a file exists, we have to close it before we delete to 
@@ -166,74 +163,7 @@ class Database:
         qry = '''CREATE TABLE Preferences (key TEXT PRIMARY KEY, value TEXT);'''
         self.execute_query(qry)
 
-        qry = '''CREATE TABLE Events (
-                EIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                Eventname TEXT NOT NULL,
-                Description TEXT,
-                Location TEXT,
-                StartTime TEXT,
-                EndTime TEXT,
-                Longitude REAL DEFAULT NULL,
-                Latitude REAL DEFAULT NULL,
-                ZoomLevel TEXT DEFAULT NULL,
-                Overlay TEXT,
-                OverlayNorth REAL DEFAULT NULL,
-                OverlaySouth REAL DEFAULT NULL,
-                OverlayEast REAL DEFAULT NULL,
-                OverlayWest REAL DEFAULT NULL
-                );'''
-        self.execute_query(qry)
-
-        qry = '''CREATE TABLE Courses (
-                CIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                Name TEXT NOT NULL,
-                Distance REAL DEFAULT NULL,
-                Relay INTEGER DEFAULT 0,
-                Color TEXT DEFAULT NULL,
-                Overlay TEXT DEFAULT NULL,
-                posNorth REAL DEFAULT NULL,
-                posSouth REAL DEFAULT NULL,
-                posEast REAL DEFAULT NULL,
-                posWest REAL DEFAULT NULL,
-                CoursePath TEXT DEFAULT NULL
-                );'''
-        self.execute_query(qry)
-        
-        qry = '''CREATE TABLE Checkpoints (
-                CPIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                Name TEXT NOT NULL,
-                Description TEXT DEFAULT NULL,
-                Longitude REAL DEFAULT NULL,
-                Latitude REAL DEFAULT NULL,
-                LeadLast INTEGER NOT NULL DEFAULT 1
-                );'''
-        self.execute_query(qry)
-        
-        qry = '''CREATE TABLE Runners (
-                RIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                FirstName TEXT DEFAULT NULL,
-                LastName TEXT DEFAULT NULL,
-                Bib TEXT DEFAULT NULL,
-                Gender TEXT DEFAULT NULL,
-                Age INTEGER DEFAULT NULL,
-                TeamName TEXT DEFAULT NULL,
-                CIdx INTEGER DEFAULT NULL,
-                DNS INTEGER NOT NULL DEFAULT 0,
-                DNF INTEGER NOT NULL DEFAULT 0,
-                LastSeenCP INTEGER DEFAULT NULL,
-                LastSeenTime TEXT DEFAULT CURRENT_TIMESTAMP,
-                RunnerPath INTEGER DEFAULT 0
-                );'''
-        self.execute_query(qry)
-        
-        qry = '''CREATE TABLE Sightings (
-                SIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                SightingTime TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                CPIdx INTEGER NOT NULL,
-                RIdx INTEGER NOT NULL
-                );  '''
-        self.execute_query(qry)
-        
+       
         qry = '''CREATE TABLE APRSMessages (
                 MIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                 MsgID TEXT NOT NULL,
@@ -244,46 +174,5 @@ class Database:
                 );'''
         self.execute_query(qry)
 
-        qry = '''CREATE TABLE Volunteers (
-                VIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                FirstName TEXT DEFAULT NULL,
-                LastName TEXT DEFAULT NULL,
-                Callsign TEXT DEFAULT NULL,
-                Phone TEXT DEFAULT NULL,
-                Email INTEGER DEFAULT NULL,
-                Notes TEXT DEFAULT NULL
-                );'''
-        self.execute_query(qry)
-
-        qry = '''CREATE TABLE Assignments (
-                AIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                Name TEXT DEFAULT NULL,
-                Description TEXT DEFAULT NULL,
-                Location TEXT DEFAULT NULL,
-                Latitude REAL DEFAULT NULL,
-                Longitude REAL DEFAULT NULL
-                );'''
-        self.execute_query(qry)
-        
-        qry = '''CREATE TABLE CheckInOuts (
-                ChkIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                VIdx INTEGER NOT NULL DEFAULT NULL,
-                AIdx INTEGER NOT NULL DEFAULT NULL,
-                InTime TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                OutTime TEXT DEFAULT NULL
-                );'''
-        self.execute_query(qry)
-        
-        qry = '''CREATE TABLE Messages (
-                MIdx INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                Received TEXT,
-                Due TEXT,
-                MsgFrom TEXT,
-                MsgTo TEXT,
-                Message TEXT NOT NULL,
-                Complete INTEGER DEFAULT 0,
-                CompleteTime TEXT
-                );'''
-        self.execute_query(qry)
 
         

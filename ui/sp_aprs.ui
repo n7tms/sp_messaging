@@ -47,17 +47,17 @@
           <string/>
          </property>
          <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="4">
+           <widget class="QPushButton" name="butClose">
+            <property name="text">
+             <string>Close</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLineEdit" name="txtCallsign">
             <property name="placeholderText">
              <string>Call Sign</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QPushButton" name="butClose">
-            <property name="text">
-             <string>Close</string>
             </property>
            </widget>
           </item>
@@ -68,7 +68,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
+          <item row="0" column="3">
            <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
@@ -80,6 +80,13 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="butShowAll">
+            <property name="text">
+             <string>Show All</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -140,7 +147,7 @@
   </action>
   <action name="actionPurge_Selected_Messages">
    <property name="text">
-    <string>Purge Selected Messages</string>
+    <string>Purge ACK'd Messages</string>
    </property>
   </action>
   <action name="actionPurge_ALL_Messages">
@@ -154,6 +161,13 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>txtCallsign</tabstop>
+  <tabstop>butFetch</tabstop>
+  <tabstop>butShowAll</tabstop>
+  <tabstop>butClose</tabstop>
+  <tabstop>tblMessages</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
