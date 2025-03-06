@@ -1,0 +1,90 @@
+{
+    "recent_files": [
+        [
+            "Testing with no image",
+            "D:/MyData/Development/seura/db/test8.db"
+        ],
+        [
+            "Testing with no image",
+            "D:/Dev/seura/db/test8.db"
+        ],
+        [
+            "#7 Complete Creation",
+            "D:/Dev/seura/db/test7.db"
+        ],
+        [
+            "#7 Complete Creation",
+            "D:/MyData/Development/seura/db/test7.db"
+        ],
+        [
+            "Testing Remote DB",
+            "D:/MyData/Development/seura/db/test6.db"
+        ]
+    ],
+    "preferences": {
+        "color_scheme": "light",
+        "units": "imperial",
+        "APRSAPIKey": "89136.fHFoOyZOGhEHc",
+        "DatabasePath": "",
+        "BackupPath": "",
+        "NumRecentFiles": 5,
+        "BackupOnExit": false,
+        "UnitsImperial": true,
+        "UnitsMetric": false,
+        "LocalTime": true,
+        "UTCTime": false,
+        "LatLongAbsolute": true,
+        "LatLongRelative": false,
+        "DateTimeFormat": "yyyy-MM-dd hh:mm:ss",
+        "ServerIP": "127.0.0.1",
+        "ServerPort": 38873,
+        "ImageServerIP": "127.0.0.1",
+        "ImageServerPort": 38874,
+        "color_preferences": {
+            "QLabel": {
+                "background-color": "#FBF9F7",
+                "color": "#000000",
+                "border": "1px solid #373435"
+            },
+            "QLineEdit": {
+                "background-color": "#FBF9F7",
+                "color": "#000000",
+                "border": "1px solid #2C3E50",
+                "border-radius": "5px",
+                "padding": "4px 8px",
+                "font-size": "14px"
+            },
+            "QLineEdit:focus": {
+                "background-color": "#FBF9F7",
+                "color": "#000000",
+                "border": "2px solid #F7921E"
+            },
+            "QPushButton": {
+                "background-color": "#55aaff",
+                "color": "#ffff7f",
+                "border": "1px solid #F7921E",
+                "border-radius": "5px",
+                "padding": "8px 16px",
+                "font-weight": "bold"
+            },
+            "QPushButton:hover": {
+                "background-color": "#5C88A8",
+                "color": "#FBF9F7",
+                "border": "1px solid #F7921E"
+            },
+            "QPushButton:pressed": {
+                "background-color": "#243746",
+                "color": "#FBF9F7",
+                "border": "1px solid #F7921E"
+            },
+            "QDialog": {
+                "background-color": "#ffffff",
+                "border": "1px solid #373435"
+            },
+            "QStatusBar": {
+                "background-color": "#FBF9F7",
+                "color": "#373435"
+            }
+        }
+    }
+}

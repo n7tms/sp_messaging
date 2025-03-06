@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="Main">
+    <file>spurpoint_logo.png</file>
+    <file>runner_blue.png</file>
+  </qresource>
+</RCC>
