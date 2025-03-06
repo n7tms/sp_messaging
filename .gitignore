@@ -1,0 +1,4 @@
+venv/
+*.exe
+*.bin
+*.pyc

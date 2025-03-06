@@ -8,6 +8,20 @@ When it was part of Spurpoint, the reports and messages needed to be manually co
 from the APRS module into the respective Sighting or Messaging module. So, by 
 separating the APRS module out, no functionality is lost.  
 
+
+## Menu
+File
+ | Documentation
+ | About
+ | -----------
+ | Exit
+
+Messages
+ | Enter APRS API Key
+ | Purge Selected Messages
+ | Purge All Messages
+
+
 ## TODO List
 - [ ] change the APRS dialog to a Main Window
 - [ ] change the database schema to handle settings and the APRS messages
