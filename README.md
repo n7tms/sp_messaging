@@ -23,20 +23,28 @@ Messages
 
 
 ## TODO List
-- [ ] create a dialog box for the user to enter the APRS API key
-- [ ] store the key in the database
-- [ ] add functionality to purge the database of existing messages
-- [ ] add functionality to delete selected messages from the database
 - [ ] modify the Spurpoint logo to create a similar logo for Messaging
 - [ ] modify the Spurpoint website to create a space for the Messaging application
-- [ ] Enter in call sign box activates Fetch Messages button
-- [ ] force text to all-caps in call sign field
-- [ ] Change delete Ack'd to set a purge flag in the field
-- [ ] Change purge all to just delete the messages with the purge flag set.
 - [ ] 
+
+## Version 1.1
+- Segregated APRS Messaging from Spurpoint
+- Call sign field forces text to uppercase
+- Hitting Enter in call sign field fetches messages
+- Applied new logo, icons, and color scheme
+- Added error reporting for API calls
+- Updated the documentation
 
 
 ## TODone List
+- [x] create a dialog box for the user to enter the APRS API key
+- [x] store the key in the database
+- [x] add functionality to purge the database of existing messages
+- [x] add functionality to delete selected messages from the database
+- [x] Enter in call sign box activates Fetch Messages button
+- [x] force text to all-caps in call sign field
+- [x] Change delete Ack'd to set a purge flag in the field
+- [x] Change purge all to just delete the messages with the purge flag set.
 - [x] modify the migrated Spurpoint About to be a Spurpoint Messaging About
 - [x] change the database schema to handle settings and the APRS messages
 - [x] hard code the css
