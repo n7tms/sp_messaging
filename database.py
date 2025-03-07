@@ -170,7 +170,8 @@ class Database:
                 MsgTime TEXT NOT NULL,
                 MsgSource TEXT,
                 MsgMessage TEXT,
-                Acked INTEGER DEFAULT NULL
+                Acked INTEGER DEFAULT NULL,
+                Purge INTEGER DEFAULT 0
                 );'''
         self.execute_query(qry)
 

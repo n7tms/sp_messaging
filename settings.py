@@ -154,6 +154,7 @@ class SettingsManager:
                 border-radius: 5px;         /* Rounded corners */
                 padding: 4px 8px;           /* Padding for text */
                 font-size: 14px;            /* Font size */
+                text-transform: uppercase;
             }
 
             QLineEdit:focus {
@@ -185,7 +186,7 @@ class SettingsManager:
             }        
             
             QTableWidget::item:selected {
-                background: yellow;
+                background: #F7921E;
                 color: black;              /* black text */
             }
             QStatusBar {
@@ -194,4 +195,52 @@ class SettingsManager:
                 padding: 5px; /* Adds spacing inside */
                 font-size: 12px;
             }
+            QMenuBar {
+                background-color: #FBF9F7; /* Snowy white background */
+                color: #2C3E50; /* Deep blue text */
+                /* border: 1px solid #373435; /* Dark gray border */
+                padding: 3px; /* Adds spacing inside */
+            }
+
+            QMenuBar::item {
+                background-color: transparent; /* No background on menu items */
+                padding: 1px 10px; /* Padding for better appearance */
+            }
+
+            QMenuBar::item:selected {
+                background-color: #F7921E; /* Carrot orange for selected item */
+                color: black; /* Black text for visibility */
+            }
+
+            QMenu {
+                background-color: #FBF9F7; /* Snowy white background */
+                border: 1px solid #373435; /* Dark gray border */
+            }
+
+            QMenu::item {
+                background-color: transparent; /* Transparent background for items */
+                padding: 5px 10px; /* Padding for better item separation */
+            }
+
+            QMenu::item:selected {
+                background-color: #F7921E; /* Carrot orange for selected item */
+                color: black; /* Black text when selected */
+            }
+
+            QMenu::item:disabled {
+                background-color: #f5f5f5; /* Light grey background for disabled */
+                color: #a0a0a0; /* Muted text color for disabled items */
+            }
+
+            QMenu::separator {
+                background-color: #2C3E50; /* Deep blue separator line */
+                height: 1px; /* Thickness of the separator */
+                margin: 5px 0; /* Adds space around the separator */
+            }
+            #groupBoxTitle {
+                border: none; /* Removes the border */
+                padding: 20px 1px 1px 1px;
+            }
+
+
             """

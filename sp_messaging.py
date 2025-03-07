@@ -19,8 +19,10 @@ from ui.sp_aprs_ui import Ui_MainWindow as MainWindowUI
 from about import AboutDialog
 from settings import SettingsManager
 from datetime import datetime
+import webbrowser
 import requests
 import sys
+import os
 
 
 
@@ -77,8 +79,10 @@ class MainWindow(QMainWindow):
 
 
         self.ui.butFetch.clicked.connect(self.butFetch_click)
+        self.ui.txtCallsign.returnPressed.connect(self.butFetch_click)
         if not self.online:
             self.ui.butFetch.setEnabled(False)
+        
 
         self.setStyleSheet(SettingsManager.WIDGETSTYLES)
 
@@ -101,9 +105,9 @@ class MainWindow(QMainWindow):
         self.refreshing = True
 
         if self.showall:
-            qry = 'select MIdx, Acked as "ACKed", MsgID, MsgTime, MsgSource, MsgMessage as "Message" from APRSMessages order by Acked, MsgTime;'
+            qry = 'select MIdx, Acked as "ACKed", MsgID, MsgTime, MsgSource, MsgMessage as "Message" from APRSMessages where Purge=0 order by Acked, MsgTime;'
         else:
-            qry = 'select MIdx, Acked as "ACKed", MsgID, MsgTime, MsgSource, MsgMessage as "Message" from APRSMessages where Acked=0 order by MsgTime;'
+            qry = 'select MIdx, Acked as "ACKed", MsgID, MsgTime, MsgSource, MsgMessage as "Message" from APRSMessages where Acked=0 and Purge=0 order by MsgTime;'
         rows = self.db.fetch_all(qry)
 
         # build the table headers from the column names in the database
@@ -154,6 +158,9 @@ class MainWindow(QMainWindow):
 
     def butFetch_click(self):
         """Poll the aprs.fi website for any new messages."""
+
+        if not self.online: return
+
         # Validate the user input
         callsign = self.ui.txtCallsign.text().strip()
         if not callsign:
@@ -182,6 +189,12 @@ class MainWindow(QMainWindow):
             response.raise_for_status()
             json_output = response.json()
 
+            if json_output['result'] == 'fail':
+                self.ui.statusbar.showMessage(f'Retrieve Messages Failed. "{json_output['description']}"')
+                QApplication.restoreOverrideCursor()
+
+                return
+            
             # Extract messages
             messages = json_output.get('entries', [])
             retrieved_count = len(messages)
@@ -201,8 +214,8 @@ class MainWindow(QMainWindow):
             new_count = len(new_messages)
             if new_messages:
                 insert_qry = """
-                    INSERT INTO APRSMessages (MsgID, MsgTime, MsgSource, MsgMessage, Acked)
-                    VALUES (?, ?, ?, ?, ?);
+                    INSERT INTO APRSMessages (MsgID, MsgTime, MsgSource, MsgMessage, Acked, Purge)
+                    VALUES (?, ?, ?, ?, ?, 0);
                 """
                 self.db.execute_many(insert_qry, new_messages)
 
@@ -254,7 +267,13 @@ class MainWindow(QMainWindow):
 
 
     def menuFileDoc_clicked(self):
-        pass
+        """Open the documentation.
+        
+        The documentation is in PDF format and stored in its own file.
+        """
+        doc_path = "SP_Messaging_Documentation.pdf"
+        doc_uri = f"file:///{os.path.abspath(doc_path)}"
+        webbrowser.open(doc_uri)
 
 
     def mnuMsgPurgeAll_clicked(self):
@@ -262,24 +281,24 @@ class MainWindow(QMainWindow):
 
         result = QMessageBox.question(self,
                                       "Spurpoint Messaging: Purge?",
-                                      "This will delete ALL messages from the database.\nThis action cannot be undone.\n\nAre you sure?",
+                                      "This will purge messages from the database that have been previously flagged for deletion.\nThis action cannot be undone.\n\nAre you sure?",
                                       QMessageBox.Yes | QMessageBox.No)
         if result == QMessageBox.Yes:
-            qry = "delete from APRSMessages;"
+            qry = "delete from APRSMessages where Purge=1;"
             self.db.execute_query(qry)
 
             self.populate_fields()
 
 
     def mnuMsgPurgeSelected_clicked(self):
-        """Allow the user to purge from the database the acknowledged messages"""
+        """Allow the user to flag for purging the acknowledged messages"""
 
         result = QMessageBox.question(self,
-                                      "Spurpoint Messaging: Purge?",
-                                      "This will delete acknowledge messages from the database.\nThis action cannot be undone.\n\nAre you sure?",
+                                      "Spurpoint Messaging: Delete?",
+                                      "This will delete acknowledge messages from the database.\nThe messages will still be in the database, but you will not be able to access them.\nThis action cannot be undone.\n\nAre you sure?",
                                       QMessageBox.Yes | QMessageBox.No)
         if result == QMessageBox.Yes:
-            qry = "delete from APRSMessages where Acked=1;"
+            qry = "update APRSMessages set Purge=1 where Acked=1;"
             self.db.execute_query(qry)
 
             self.populate_fields()
@@ -304,7 +323,7 @@ class MainWindow(QMainWindow):
                 qry = "update Preferences set value=? where key = 'APRSAPIKey';"
             else:
                 qry = "insert into Preferences (key, value) values ('APRSAPIKey', ?);"
-            values = [result]
+            values = [result.strip()]
             self.db.execute_query(qry,values)
         
 

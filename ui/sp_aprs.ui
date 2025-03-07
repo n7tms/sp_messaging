@@ -21,7 +21,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBoxTitle">
       <property name="title">
        <string>APRS Message Handler</string>
       </property>
@@ -30,7 +30,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="groupBoxInputs">
          <property name="minimumSize">
           <size>
            <width>400</width>
@@ -147,12 +147,12 @@
   </action>
   <action name="actionPurge_Selected_Messages">
    <property name="text">
-    <string>Purge ACK'd Messages</string>
+    <string>Delete ACK'd Messages</string>
    </property>
   </action>
   <action name="actionPurge_ALL_Messages">
    <property name="text">
-    <string>Purge ALL Messages</string>
+    <string>Purge Deleted Messages</string>
    </property>
   </action>
   <action name="actionEnter_APRS_API_Key">

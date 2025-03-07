@@ -29,6 +29,10 @@ Messages
 - [ ] add functionality to delete selected messages from the database
 - [ ] modify the Spurpoint logo to create a similar logo for Messaging
 - [ ] modify the Spurpoint website to create a space for the Messaging application
+- [ ] Enter in call sign box activates Fetch Messages button
+- [ ] force text to all-caps in call sign field
+- [ ] Change delete Ack'd to set a purge flag in the field
+- [ ] Change purge all to just delete the messages with the purge flag set.
 - [ ] 
 
 
@@ -38,3 +42,18 @@ Messages
 - [x] hard code the css
 - [x] change the APRS dialog to a Main Window
 
+
+
+### PyInstaller (One File)
+>>> pyinstaller --onefile --windowed --add-data "ui/icons.qrc;." spurpoint.py  
+>>> pyinstaller --onefile --windowed --add-data "ui/icons.qrc;." main.py  
+(*Replace the ; with : on linux.*)  
+
+### PyInstaller (for packaging)
+>>> pyinstaller --windowed --add-data "ui/icons.qrc;." spurpoint.py
+(*Replace the ; with : on linux.*)  
+
+
+### pyside6-deploy
+>>> pyside6-deploy main.py
+>>> pyside6-deploy -c pysidedeploy.spec

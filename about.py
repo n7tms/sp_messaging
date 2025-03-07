@@ -26,7 +26,7 @@ class AboutDialog(QDialog):
         about_text = """Version 1.1
 An APRS Messaging Application
         
-Retrieve APRS messages from APRS.fi via an API
+Retrieve APRS messages from APRS.fi via an API.
         
 Copyright (c) Todd Smith N7TMS 2025
         """

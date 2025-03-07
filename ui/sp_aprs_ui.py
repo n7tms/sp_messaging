@@ -45,28 +45,28 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.groupBox = QGroupBox(self.centralwidget)
-        self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.verticalLayout = QVBoxLayout(self.groupBox)
+        self.groupBoxTitle = QGroupBox(self.centralwidget)
+        self.groupBoxTitle.setObjectName(u"groupBoxTitle")
+        self.groupBoxTitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.verticalLayout = QVBoxLayout(self.groupBoxTitle)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.groupBox_2 = QGroupBox(self.groupBox)
-        self.groupBox_2.setObjectName(u"groupBox_2")
-        self.groupBox_2.setMinimumSize(QSize(400, 0))
-        self.groupBox_2.setMaximumSize(QSize(16777215, 16777215))
-        self.gridLayout = QGridLayout(self.groupBox_2)
+        self.groupBoxInputs = QGroupBox(self.groupBoxTitle)
+        self.groupBoxInputs.setObjectName(u"groupBoxInputs")
+        self.groupBoxInputs.setMinimumSize(QSize(400, 0))
+        self.groupBoxInputs.setMaximumSize(QSize(16777215, 16777215))
+        self.gridLayout = QGridLayout(self.groupBoxInputs)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.butClose = QPushButton(self.groupBox_2)
+        self.butClose = QPushButton(self.groupBoxInputs)
         self.butClose.setObjectName(u"butClose")
 
         self.gridLayout.addWidget(self.butClose, 0, 4, 1, 1)
 
-        self.txtCallsign = QLineEdit(self.groupBox_2)
+        self.txtCallsign = QLineEdit(self.groupBoxInputs)
         self.txtCallsign.setObjectName(u"txtCallsign")
 
         self.gridLayout.addWidget(self.txtCallsign, 0, 0, 1, 1)
 
-        self.butFetch = QPushButton(self.groupBox_2)
+        self.butFetch = QPushButton(self.groupBoxInputs)
         self.butFetch.setObjectName(u"butFetch")
 
         self.gridLayout.addWidget(self.butFetch, 0, 1, 1, 1)
@@ -75,21 +75,21 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addItem(self.horizontalSpacer, 0, 3, 1, 1)
 
-        self.butShowAll = QPushButton(self.groupBox_2)
+        self.butShowAll = QPushButton(self.groupBoxInputs)
         self.butShowAll.setObjectName(u"butShowAll")
 
         self.gridLayout.addWidget(self.butShowAll, 0, 2, 1, 1)
 
 
-        self.verticalLayout.addWidget(self.groupBox_2)
+        self.verticalLayout.addWidget(self.groupBoxInputs)
 
-        self.tblMessages = QTableWidget(self.groupBox)
+        self.tblMessages = QTableWidget(self.groupBoxTitle)
         self.tblMessages.setObjectName(u"tblMessages")
 
         self.verticalLayout.addWidget(self.tblMessages)
 
 
-        self.gridLayout_2.addWidget(self.groupBox, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.groupBoxTitle, 0, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -129,11 +129,11 @@ class Ui_MainWindow(object):
         self.actionDocumentation.setText(QCoreApplication.translate("MainWindow", u"Documentation", None))
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
         self.actionExit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
-        self.actionPurge_Selected_Messages.setText(QCoreApplication.translate("MainWindow", u"Purge ACK'd Messages", None))
-        self.actionPurge_ALL_Messages.setText(QCoreApplication.translate("MainWindow", u"Purge ALL Messages", None))
+        self.actionPurge_Selected_Messages.setText(QCoreApplication.translate("MainWindow", u"Delete ACK'd Messages", None))
+        self.actionPurge_ALL_Messages.setText(QCoreApplication.translate("MainWindow", u"Purge Deleted Messages", None))
         self.actionEnter_APRS_API_Key.setText(QCoreApplication.translate("MainWindow", u"Enter APRS API Key", None))
-        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"APRS Message Handler", None))
-        self.groupBox_2.setTitle("")
+        self.groupBoxTitle.setTitle(QCoreApplication.translate("MainWindow", u"APRS Message Handler", None))
+        self.groupBoxInputs.setTitle("")
         self.butClose.setText(QCoreApplication.translate("MainWindow", u"Close", None))
         self.txtCallsign.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Call Sign", None))
         self.butFetch.setText(QCoreApplication.translate("MainWindow", u"Fetch Messages", None))
