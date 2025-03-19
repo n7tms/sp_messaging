@@ -18,6 +18,10 @@
   <property name="windowTitle">
    <string>Spurpoint Messaging</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/Main/briefpoint_Icon.ico</normaloff>:/Main/briefpoint_Icon.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
@@ -168,6 +172,8 @@
   <tabstop>butClose</tabstop>
   <tabstop>tblMessages</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

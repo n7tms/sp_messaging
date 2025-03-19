@@ -1,5 +1,5 @@
 ##############################################################################
-# SpurPoint Messaging
+# Spurpoint Messaging (Briefpoint)
 #
 # sp_messaging.py
 # 
@@ -8,11 +8,11 @@
 #
 # Creator: Todd Smith
 # Start Date: 2025-03-06
-# Version 1.1
+# Version 1.2
 #
 ##############################################################################
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QInputDialog, QMessageBox, QSplashScreen, QTableWidgetItem, QAbstractItemView, QTableWidget, QFrame
+from PySide6.QtWidgets import QApplication, QMainWindow, QInputDialog, QMessageBox, QSplashScreen, QTableWidgetItem
 from PySide6.QtGui import QPixmap, Qt, QCursor
 from database import Database
 from ui.sp_aprs_ui import Ui_MainWindow as MainWindowUI
@@ -38,11 +38,11 @@ class MainWindow(QMainWindow):
         # self.settingsmgr = SettingsManager()
         # self.settingsmgr.load_settings()
         self._db_version = '1'
-        self.setWindowTitle("Spurpoint Messaging 1.1")
+        self.setWindowTitle("Briefpoint 1.2")
         self.online = True
 
         # Splash Screen ============================================
-        pixmap = QPixmap(u":/Main/spurpoint_logo.png")
+        pixmap = QPixmap(u":/Main/briefpoint_logo.png")
         splash = QSplashScreen(pixmap)
         splash.show()
 
@@ -52,8 +52,8 @@ class MainWindow(QMainWindow):
         QApplication.processEvents()
         if not self.is_active_internet():
             result = QMessageBox.critical(self,
-                                          "SP Messaging: Internet Required",
-                                          "SP Messaging was unable to access the Internet.\nInternet is required to retrieve messages.\n\nOpen anyway?",
+                                          "Briefpoint: Internet Required",
+                                          "Briefpoint was unable to access the Internet.\nInternet is required to retrieve messages.\n\nOpen anyway?",
                                           QMessageBox.Yes | QMessageBox.No)
             if result == QMessageBox.Yes:
                 self.online = False
@@ -164,7 +164,7 @@ class MainWindow(QMainWindow):
         # Validate the user input
         callsign = self.ui.txtCallsign.text().strip()
         if not callsign:
-            QMessageBox.information(self, "Spurpoint Messaging: Missing Data", "A call sign is required.",
+            QMessageBox.information(self, "Briefpoint: Missing Data", "A call sign is required.",
                                     QMessageBox.Ok, QMessageBox.Ok)
             return
 
@@ -175,7 +175,7 @@ class MainWindow(QMainWindow):
         if len(rows) == 1:
             aprs_api_key = rows[0]['value'] 
         if not aprs_api_key:
-            QMessageBox.warning(self, "Spurpoint Messaging: Configuration Error", "APRS API key is missing.",
+            QMessageBox.warning(self, "Briefpoint: Configuration Error", "APRS API key is missing.",
                                 QMessageBox.Ok, QMessageBox.Ok)
             return
 
@@ -224,10 +224,10 @@ class MainWindow(QMainWindow):
             self.ui.statusbar.showMessage(f"Retrieved: {retrieved_count}; New: {new_count}")
 
         except requests.exceptions.RequestException as e:
-            QMessageBox.critical(self, "Spurpoint: Network Error", f"Failed to fetch messages: {e}",
+            QMessageBox.critical(self, "Briefpoint: Network Error", f"Failed to fetch messages: {e}",
                                 QMessageBox.StandardButton.Ok, QMessageBox.StandardButton.Ok)
         except Exception as e:
-            QMessageBox.critical(self, "Spurpoint: Error", f"An error occurred: {e}",
+            QMessageBox.critical(self, "Briefpoint: Error", f"An error occurred: {e}",
                                 QMessageBox.StandardButton.Ok, QMessageBox.StandardButton.Ok)
 
         QApplication.restoreOverrideCursor()
@@ -271,7 +271,7 @@ class MainWindow(QMainWindow):
         
         The documentation is in PDF format and stored in its own file.
         """
-        doc_path = "SP_Messaging_Documentation.pdf"
+        doc_path = "Briefpoint_Documentation.pdf"
         doc_uri = f"file:///{os.path.abspath(doc_path)}"
         webbrowser.open(doc_uri)
 
@@ -280,7 +280,7 @@ class MainWindow(QMainWindow):
         """Allow the user to purge from the database ALL messages"""
 
         result = QMessageBox.question(self,
-                                      "Spurpoint Messaging: Purge?",
+                                      "Briefpoint: Purge?",
                                       "This will purge messages from the database that have been previously flagged for deletion.\nThis action cannot be undone.\n\nAre you sure?",
                                       QMessageBox.Yes | QMessageBox.No)
         if result == QMessageBox.Yes:
@@ -294,7 +294,7 @@ class MainWindow(QMainWindow):
         """Allow the user to flag for purging the acknowledged messages"""
 
         result = QMessageBox.question(self,
-                                      "Spurpoint Messaging: Delete?",
+                                      "Briefpoint: Delete?",
                                       "This will delete acknowledge messages from the database.\nThe messages will still be in the database, but you will not be able to access them.\nThis action cannot be undone.\n\nAre you sure?",
                                       QMessageBox.Yes | QMessageBox.No)
         if result == QMessageBox.Yes:
@@ -315,7 +315,7 @@ class MainWindow(QMainWindow):
             aprs_api_key = rows[0]['value']
 
         result, ok = QInputDialog.getText(self,
-                                      "Spurpoint Messaging: APRS API",
+                                      "Briefpoint: APRS API",
                                       "Enter the APRS API Key:",
                                       text=aprs_api_key)
         if ok and result:

@@ -1,6 +1,6 @@
 <RCC>
   <qresource prefix="Main">
-    <file>spurpoint_logo.png</file>
-    <file>runner_blue.png</file>
+    <file>briefpoint_Icon.ico</file>
+    <file>briefpoint_logo.png</file>
   </qresource>
 </RCC>

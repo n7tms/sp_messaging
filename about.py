@@ -1,5 +1,5 @@
 ##############################################################################
-# SpurPoint
+# Spurpoint Messaging (Briefpoint)
 #
 # about.py
 # 
@@ -22,8 +22,8 @@ class AboutDialog(QDialog):
         self.ui = Ui_dlgAbout() 
         self.ui.setupUi(self)
 
-        self.ui.lblApplicationTitle.setText("Spurpoint Messaging")
-        about_text = """Version 1.1
+        self.ui.lblApplicationTitle.setText("Briefpoint")
+        about_text = """Version 1.2
 An APRS Messaging Application
         
 Retrieve APRS messages from APRS.fi via an API.

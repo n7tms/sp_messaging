@@ -24,9 +24,9 @@ class Ui_dlgAbout(object):
     def setupUi(self, dlgAbout):
         if not dlgAbout.objectName():
             dlgAbout.setObjectName(u"dlgAbout")
-        dlgAbout.resize(390, 487)
+        dlgAbout.resize(532, 358)
         icon = QIcon()
-        icon.addFile(u":/Main/runner_blue.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/Main/briefpoint_Icon.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         dlgAbout.setWindowIcon(icon)
         self.verticalLayout = QVBoxLayout(dlgAbout)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -38,8 +38,10 @@ class Ui_dlgAbout(object):
 
         self.label = QLabel(dlgAbout)
         self.label.setObjectName(u"label")
-        self.label.setPixmap(QPixmap(u":/Main/runner_blue.png"))
+        self.label.setMaximumSize(QSize(500, 150))
+        self.label.setPixmap(QPixmap(u":/Main/briefpoint_logo.png"))
         self.label.setScaledContents(True)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_2.addWidget(self.label)
 

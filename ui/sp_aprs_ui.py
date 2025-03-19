@@ -20,6 +20,7 @@ from PySide6.QtWidgets import (QApplication, QGridLayout, QGroupBox, QHeaderView
     QLineEdit, QMainWindow, QMenu, QMenuBar,
     QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
     QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+import ui.icons_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -29,6 +30,9 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setPointSize(12)
         MainWindow.setFont(font)
+        icon = QIcon()
+        icon.addFile(u":/Main/briefpoint_Icon.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        MainWindow.setWindowIcon(icon)
         self.actionDocumentation = QAction(MainWindow)
         self.actionDocumentation.setObjectName(u"actionDocumentation")
         self.actionAbout = QAction(MainWindow)

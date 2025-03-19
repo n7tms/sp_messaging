@@ -6,16 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>390</width>
-    <height>487</height>
+    <width>532</width>
+    <height>358</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Spurpoint Messaging: About</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/Main/runner_blue.png</normaloff>:/Main/runner_blue.png</iconset>
+   <iconset resource="icons.qrc">
+    <normaloff>:/Main/briefpoint_Icon.ico</normaloff>:/Main/briefpoint_Icon.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -35,14 +35,23 @@
      </item>
      <item>
       <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>500</width>
+         <height>150</height>
+        </size>
+       </property>
        <property name="text">
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>:/Main/runner_blue.png</pixmap>
+        <pixmap resource="icons.qrc">:/Main/briefpoint_logo.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
