@@ -23,7 +23,7 @@ class Database:
 
     _instance = None
 
-    def __new__(cls, db_name: str=os.path.join("SPMessaging.db"), opening: bool=False):
+    def __new__(cls, db_name: str=os.path.join("briefpoint.db"), opening: bool=False):
         """Instantiate a new instance of the database.
         
         If an instance does not already exist, create a new one.
